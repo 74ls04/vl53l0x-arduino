@@ -1,6 +1,6 @@
 # vl53l0xTOFA library for Arduino
 
-Version: 1.0.0<br>
+Version: 1.0.1<br>
 Release date: 2020 Jun 29<br>
 [www.harnettlab.org](https://www.harnettlab.org/)
 
@@ -44,18 +44,18 @@ Make the following connections between the Arduino and the VL53L0X board:
 
 ### Software
 
-If you are using version 1.6.2 or later of the [Arduino software (IDE)](http://www.arduino.cc/en/Main/Software), you can use the Library Manager to install the ORIGINAL library:
+If you are using version 1.6.2 or later of the [Arduino software (IDE)](http://www.arduino.cc/en/Main/Software), you can use the Library Manager to install the vl53l0xTOFA library:
 
 1. In the Arduino IDE, open the "Sketch" menu, select "Include Library", then "Manage Libraries...".
-2. Search for "VL53L0X".
-3. Click the VL53L0X entry in the list.
+2. Search for "vl53l0xTOFA".
+3. Click the vl53l0xTOFA entry in the list.
 4. Click "Install".
 
 If this does not work, you can manually install the library:
 
 1. Download the [latest release archive from GitHub](https://github.com/pololu/vl53l0x-arduino/releases) and decompress it.
-2. Rename the folder "vl53l0x-arduino-master" to "VL53L0X".
-3. Move the "VL53L0X" folder into the "libraries" directory inside your Arduino sketchbook directory.  You can view your sketchbook location by opening the "File" menu and selecting "Preferences" in the Arduino IDE.  If there is not already a "libraries" folder in that location, you should make the folder yourself.
+2. Rename the folder "vl53l0x-arduino-master" to "vl53l0xTOFA".
+3. Move the "vl53l0xTOFA" folder into the "libraries" directory inside your Arduino sketchbook directory.  You can view your sketchbook location by opening the "File" menu and selecting "Preferences" in the Arduino IDE.  If there is not already a "libraries" folder in that location, you should make the folder yourself.
 4. After installing the library, restart the Arduino IDE.
 
 ## Example
@@ -164,4 +164,5 @@ This library is intended to provide a quicker and easier way to get started usin
 
 ## Version history
 
+* 1.0.1 (2020 Jun 29): Updated documentation.
 * 1.0.0 (2020 Jun 29): Original release.

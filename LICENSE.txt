@@ -1,7 +1,6 @@
-Copyright (c) 2017 Pololu Corporation.  For more information, see
+CCopyright (c) 2020 Harnett Lab.  For more information, see
 
-https://www.pololu.com/
-https://forum.pololu.com/
+https://harnettlab.org
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -25,8 +24,13 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 =================================================================
+This is a modification of the Pololu VL53L0X library to report 
+ambient and signal counts per second in addition to time-of-
+flight (TOF) based distance in millimeters for a combined TOF-
+Amplitude measurement (TOFA).
 
-Most of the functionality of this library is based on the VL53L0X
+Most of the functionality of this library is based on the Pololu 
+VL53L0X library, which in turn is based on the
 API provided by ST (STSW-IMG005), and some of the explanatory
 comments are quoted or paraphrased from the API source code, API
 user manual (UM2039), and the VL53L0X datasheet.

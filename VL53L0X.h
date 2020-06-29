@@ -1,9 +1,9 @@
-#ifndef VL53L0X_h
-#define VL53L0X_h
+#ifndef VL53L0xTOFA_h
+#define VL53L0xTOFA_h
 
 #include <Arduino.h>
 
-class VL53L0X
+class VL53L0xTOFA
 {
   public:
     // register addresses from API vl53l0x_device.h (ordered as listed there)
@@ -93,10 +93,16 @@ class VL53L0X
     };
 
     enum vcselPeriodType { VcselPeriodPreRange, VcselPeriodFinalRange };
+    
+    struct TOFA{ //CKH NEW holds distance, signal and ambient rate
+        uint16_t distancemm;
+ 	uint16_t signalrate;
+        uint16_t ambientrate;
+    } tofa;
 
     uint8_t last_status; // status of last I2C transmission
 
-    VL53L0X(void);
+    VL53L0xTOFA(void);
 
     void setAddress(uint8_t new_addr);
     inline uint8_t getAddress(void) { return address; }
@@ -126,6 +132,8 @@ class VL53L0X
     void stopContinuous(void);
     uint16_t readRangeContinuousMillimeters(void);
     uint16_t readRangeSingleMillimeters(void);
+     
+    void readTOFA(void);  //CKH NEW give me range AND signal & ambient amplitudes
 
     inline void setTimeout(uint16_t timeout) { io_timeout = timeout; }
     inline uint16_t getTimeout(void) { return io_timeout; }
@@ -135,6 +143,9 @@ class VL53L0X
     // TCC: Target CentreCheck
     // MSRC: Minimum Signal Rate Check
     // DSS: Dynamic Spad Selection
+
+    
+
 
     struct SequenceStepEnables
     {

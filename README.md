@@ -1,13 +1,13 @@
-# VL53L0X library for Arduino
+# vl53l0xTOFA library for Arduino
 
-Version: 1.2.0<br>
-Release date: 2019 Oct 31<br>
+Version: 1.0.0<br>
+Release date: 2020 Jun 29<br>
 [![Build Status](https://travis-ci.org/pololu/vl53l0x-arduino.svg?branch=master)](https://travis-ci.org/pololu/vl53l0x-arduino)<br>
 [www.pololu.com](https://www.pololu.com/)
 
 ## Summary
 
-This is a library for the Arduino IDE that helps interface with ST's [VL53L0X time-of-flight distance sensor](https://www.pololu.com/product/2490). The library makes it simple to configure the sensor and read range data from it via I&sup2;C.
+This is a library for the Arduino IDE that helps interface with ST's [VL53L0X time-of-flight distance sensor](https://www.pololu.com/product/2490). The library makes it simple to configure the sensor and read range data from it via I&sup2;C. The TOFA modification adds ambient and signal rate measurements in mega counts per second.
 
 ## Supported platforms
 

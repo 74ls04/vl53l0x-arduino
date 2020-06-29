@@ -2,8 +2,7 @@
 
 Version: 1.0.0<br>
 Release date: 2020 Jun 29<br>
-[![Build Status](https://travis-ci.org/pololu/vl53l0x-arduino.svg?branch=master)](https://travis-ci.org/pololu/vl53l0x-arduino)<br>
-[www.pololu.com](https://www.pololu.com/)
+[www.harnettlab.org](https://www.harnettlab.org/)
 
 ## Summary
 
@@ -45,7 +44,7 @@ Make the following connections between the Arduino and the VL53L0X board:
 
 ### Software
 
-If you are using version 1.6.2 or later of the [Arduino software (IDE)](http://www.arduino.cc/en/Main/Software), you can use the Library Manager to install this library:
+If you are using version 1.6.2 or later of the [Arduino software (IDE)](http://www.arduino.cc/en/Main/Software), you can use the Library Manager to install the ORIGINAL library:
 
 1. In the Arduino IDE, open the "Sketch" menu, select "Include Library", then "Manage Libraries...".
 2. Search for "VL53L0X".
@@ -59,9 +58,9 @@ If this does not work, you can manually install the library:
 3. Move the "VL53L0X" folder into the "libraries" directory inside your Arduino sketchbook directory.  You can view your sketchbook location by opening the "File" menu and selecting "Preferences" in the Arduino IDE.  If there is not already a "libraries" folder in that location, you should make the folder yourself.
 4. After installing the library, restart the Arduino IDE.
 
-## Examples
+## Example
 
-Several example sketches are available that show how to use the library. You can access them from the Arduino IDE by opening the "File" menu, selecting "Examples", and then selecting "VL53L0X". If you cannot find these examples, the library was probably installed incorrectly and you should retry the installation instructions above.
+An example sketch is available that shows how to use the library. You can access it from the Arduino IDE by opening the "File" menu, selecting "Examples", and then selecting "vl53l0xTOFA". If you cannot find these examples, the library was probably installed incorrectly and you should retry the installation instructions above.
 
 ## ST's VL53L0X API and this library
 
@@ -74,7 +73,10 @@ This library is intended to provide a quicker and easier way to get started usin
 * `uint8_t last_status`<br>
   The status of the last I&sup2;C write transmission. See the [`Wire.endTransmission()` documentation](http://arduino.cc/en/Reference/WireEndTransmission) for return values.
 
-* `VL53L0X(void)`<br>
+* `struct TOFA` <br>
+  A structure that holds a distance measurement, signal rate measurement, and ambient rate measurement. Populated by readTOFA().
+
+* `vl53l0xTOFA(void)`<br>
   Constructor.
 
 * `void setAddress(uint8_t new_addr)`<br>
@@ -148,6 +150,9 @@ This library is intended to provide a quicker and easier way to get started usin
 * `uint16_t readRangeSingleMillimeters(void)`<br>
   Performs a single-shot ranging measurement and returns the reading in millimeters.
 
+* `void readTOFA(void)`<br>
+  Uses readRangeContinuousMillimeters to fill tofa structure with latest distance, signal rate and ambient rate values.
+
 * `void setTimeout(uint16_t timeout)`<br>
   Sets a timeout period in milliseconds after which read operations will abort if the sensor is not ready. A value of 0 disables the timeout.
 
@@ -159,8 +164,4 @@ This library is intended to provide a quicker and easier way to get started usin
 
 ## Version history
 
-* 1.2.0 (2019 Oct 31): Incorporated some updates from ST's VL53L0X API version 1.0.2 (this library was originally based on API version 1.0.0).
-* 1.1.0 (2019 Oct 29): Improved `init()` and added a check for its return value in examples; fixed a few other issues.
-* 1.0.2 (2017 Jun 27): Fixed a typo in a register modification in `getSpadInfo()` (thanks @tridge).
-* 1.0.1 (2016 Dec 08): Fixed type error in `readReg32Bit()`.
-* 1.0.0 (2016 Aug 12): Original release.
+* 1.0.0 (2020 Jun 29): Original release.

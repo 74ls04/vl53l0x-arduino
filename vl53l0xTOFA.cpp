@@ -872,7 +872,7 @@ uint16_t VL53L0xTOFA::readRangeSingleMillimeters(void)
 //in addition to range,
 // Returns a Signal Rate reading in mega counts per second when continuous mode is active
 // and an Ambient Rate in mega counts per second
-void VL53L0xTOFA::readTOFA(void)
+uint16_t VL53L0xTOFA::readTOFA(void)
 {
   startTimeout();
   while ((readReg(RESULT_INTERRUPT_STATUS) & 0x07) == 0)

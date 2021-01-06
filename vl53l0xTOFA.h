@@ -133,7 +133,7 @@ class VL53L0xTOFA
     uint16_t readRangeContinuousMillimeters(void);
     uint16_t readRangeSingleMillimeters(void);
      
-    void readTOFA(void);  //CKH NEW give me range AND signal & ambient amplitudes
+    uint16_t readTOFA(void);  //CKH NEW give me range AND signal & ambient amplitudes
 
     inline void setTimeout(uint16_t timeout) { io_timeout = timeout; }
     inline uint16_t getTimeout(void) { return io_timeout; }

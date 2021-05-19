@@ -5,13 +5,11 @@ range measurements with the VL53L0X. It is based on
 vl53l0x_ContinuousRanging_Example.c from the VL53L0X API.
 
 The range readings are in units of mm. */
-//CKH attempts to get AmbientRate and SignalRate amplitudes
-//by modifying the pololu library but may just switch to Adafruit
-//since they seem to have implemented the whole api
-//CKH added some smoothing 4-5-20
+//Get AmbientRate and SignalRate amplitudes
+//by modifying the pololu library 
+//Added some smoothing to the distance result.
 
 #include <Wire.h>
-#include <VL53L0xTOFA.h> //cindys new library just see if it crashes
 
 VL53L0xTOFA sensor;
 float smoothLength=0;

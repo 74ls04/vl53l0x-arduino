@@ -1,4 +1,4 @@
-#include <VL53L0xTOFA.h>
+#include <vl53l0xTOFA.h>
 
 /* This example shows how to use continuous mode to take
 range measurements with the VL53L0X. It is based on

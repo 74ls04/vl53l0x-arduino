@@ -872,6 +872,9 @@ uint16_t VL53L0xTOFA::readRangeSingleMillimeters(void)
 //in addition to range,
 // Returns a Signal Rate reading in mega counts per second when continuous mode is active
 // and an Ambient Rate in mega counts per second
+// PBJ NEW
+// Also return the ranging status and effective SPAD count per page 16 of the API manual
+// Status 0 = Range Valid, 1 = Sigma Fail (Not used), 2 = Signal Fail, 3 = Range Fail, 4 = Phase Fail, 5 = Hardware Fail
 uint16_t VL53L0xTOFA::readTOFA(void)
 {
   startTimeout();
@@ -890,17 +893,48 @@ uint16_t VL53L0xTOFA::readTOFA(void)
   uint16_t signalrate = readReg16Bit(RESULT_RANGE_STATUS + 6);//ckh new
   uint16_t ambientrate = readReg16Bit(RESULT_RANGE_STATUS + 8);//ckh new
 //I got these offsets from ST's vl53l0x_api.c (search "ambient")
+  uint8_t  rangestatus = readReg(RESULT_RANGE_STATUS);
 
   tofa.distancemm=range;
   tofa.signalrate=signalrate;
   tofa.ambientrate=ambientrate;
+  tofa.rangestatus= parseRangeStatus(rangestatus);
 
   writeReg(SYSTEM_INTERRUPT_CLEAR, 0x01);
 }
 
 
 
+uint8_t VL53L0xTOFA::parseRangeStatus(uint8_t rangeStatus)
+{
+  uint8_t internal_status;
+  uint8_t status;
 
+  internal_status = ((rangeStatus & 0x78) >> 3);
+
+  if (internal_status == 1 || internal_status == 2 || internal_status == 3)
+  {
+    status = 5; /*HARDWARE_FAIL*/
+  }
+  else if (internal_status == 6 || internal_status == 9)
+  {
+    status = 4; /*PHASE_FAIL*/
+  }
+  else if (internal_status == 8 || internal_status == 10)
+  {
+    status = 3; /*RANGE_FAIL*/
+  }
+  else if (internal_status == 4)
+  {
+    status = 2; /*SIGNAL_FAIL*/
+  } else if (internal_status == 11)
+  {
+    status = 0; /*RANGE_VALID*/
+  } else {
+    status = 255;
+  }
+  return status;
+}
 
 
 // Did a timeout occur in one of the read functions since the last call to

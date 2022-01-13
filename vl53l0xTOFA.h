@@ -94,10 +94,16 @@ class VL53L0xTOFA
 
     enum vcselPeriodType { VcselPeriodPreRange, VcselPeriodFinalRange };
     
-    struct TOFA{ //CKH NEW holds distance, signal and ambient rate
+    /*
+      -CKH NEW holds distance, signal and ambient rate
+      -PBJ NEW update struct to include range status and spad count
+    */
+    struct TOFA{ //
         uint16_t distancemm;
- 	uint16_t signalrate;
+ 	      uint16_t signalrate;
         uint16_t ambientrate;
+        uint8_t rangestatus;
+
     } tofa;
 
     uint8_t last_status; // status of last I2C transmission
@@ -134,6 +140,7 @@ class VL53L0xTOFA
     uint16_t readRangeSingleMillimeters(void);
      
     uint16_t readTOFA(void);  //CKH NEW give me range AND signal & ambient amplitudes
+    uint8_t parseRangeStatus(uint8_t rangestatus);
 
     inline void setTimeout(uint16_t timeout) { io_timeout = timeout; }
     inline uint16_t getTimeout(void) { return io_timeout; }
